@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define N 10
 
@@ -48,7 +49,6 @@ typedef struct{
     begin_t begin;
     end_t end;
     next_t next;
-    prev_t prev;
 }iterator;
 
 void recorre(iterator it, vector array){
@@ -56,18 +56,33 @@ void recorre(iterator it, vector array){
     it.end = end;
     it.next = next;
     
+    printf("this is first element %s", it.begin(array));
+    printf("this is last element %s", it.end(array));
+
     for(void * aux = it.begin(array); aux<it.end(array); it.next(array)){
-        printf(&aux);
+        printf(" element %s", aux);
     }
 }
 
 int main(int argc, const char * argv[])
 {
     vector enteros;
-    enteros.first = (vector *) malloc(N*sizeof(vector));
+    enteros.first = (int *) malloc(N*sizeof(int));
     enteros.current = enteros.first;
     enteros.count = N;
     enteros.size = sizeof(int);
-    
+
+    int * aux = enteros.first;
+    int * last = enteros.first + N;
+
+    for (; aux < last; ++aux) {
+        *aux = rand() % 100;
+    }
+
+    iterator forward;
+    forward.begin = begin;
+    forward.end = end;
+    forward.next = next;
+    recorre(forward, enteros);
     
 }
