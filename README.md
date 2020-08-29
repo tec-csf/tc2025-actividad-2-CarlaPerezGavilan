@@ -14,13 +14,34 @@ This exercise attempts to implement three types of iterators (similar to those a
 
 The aim is to use generic functions and pointers, in order to create the implementation. 
 
-## Good to Know
+## Implementation
 
 * Function Recorre uses the following paramters:
-- [input] it: type of iterator that you want to use,
-- [input] array: structure vector with array you want to iterate, 
-- [input] forward: 0 in case you want to iterate forward or 1 if backward,
-- [input] printThis: printing function for this type of data,
+    * [input] it: type of iterator that you want to use,
+    * [input] array: structure vector with array you want to iterate, 
+    * [input] forward: 0 in case you want to iterate forward or 1 if backward,
+    * [input] printThis: printing function for this type of data,
+
+## Instructions
+
+Demuestre el funcionamiento del programa de la siguiente manera:
+
+Recorriendo un arreglo de números enteros utilizando un Forward Iterator.
+Recorriendo un arreglo de estructuras del tipo Libro, utilizando un Bidirectional Iterator.
+struct  Libro {
+  char * titulo;
+  int paginas;
+}
+
+El iterador debe contener, al menos, las siguientes funcionalidades: 
+
+* begin :  Regresa un apuntador al primer elemento 
+* end : Regresa un apuntador al último elemento
+* next : Regresa un apuntador al siguiente elemento. Si se llegó al final debe regresar NULL.
+* prev : Regresa un apuntador al elemento anterior. Si llegó al inicio debe regresar NULL.
+
+Tenga en cuenta que debe existir una función genérica denominada Recorre que debe recibir como parámetros un arreglo de cualquier tipo y un iterador de cualquier tipo y debe recorrer el arreglo utilizando el iterador especificado y mostrar el contenido del arreglo.
 
 ## References
+
 
