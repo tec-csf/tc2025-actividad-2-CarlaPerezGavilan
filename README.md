@@ -3,6 +3,7 @@
 ## Author
 
 Carla Pérez Gavilán Del Castillo, A01023033
+[Carla's Github](https://github.com/CarlaPerezGavilan)
 
 ## Date
 
@@ -44,4 +45,7 @@ Tenga en cuenta que debe existir una función genérica denominada Recorre que d
 
 ## References
 
+* [a link](https://github.com/vcubells/tc2025/blob/master/Tema_1_Apuntadores/ordenamiento_generico/ordenamiento_generico/main.c)
+* [a link](http://cs.boisestate.edu/~amit/teaching/253/handouts/07-c-generic-coding-handout.pdf)
+* [a link](https://moodlearn.ariel.ac.il/pluginfile.php/1079766/mod_resource/content/0/12_generic_programming_in_C.pdf)
 
