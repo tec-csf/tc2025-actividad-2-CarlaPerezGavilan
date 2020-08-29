@@ -8,8 +8,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 
 #define N 10
+
+/* Defining Structures */
 
 typedef struct{
     size_t size;
@@ -23,9 +27,9 @@ struct Libro {
   int paginas;
 };
 
-typedef void * (*iterator_t)(vector * array);
-typedef void * (*print_t)(void *);
+/* Defining Structure and Generic Function Iterator */
 
+typedef void * (*iterator_t)(vector * array);
 
 typedef struct{
     iterator_t begin;
@@ -34,13 +38,21 @@ typedef struct{
     iterator_t prev;
 }iterator;
 
+/* Defining Generic Functions */
+
+typedef void * (*print_t)(void *);
+
 typedef iterator  (*begin_t)(vector * array);
+
+/* Printing Function */
 
 void * printInt(void *);
 
 void * printFloat(void *);
 
 void * printLibro(void *);
+
+/* Auxiliary Functions  */
 
 void * begin(vector * array){
     return array->first;
@@ -67,7 +79,7 @@ void * prev(vector * array){
     
 }
 
-
+/* Implementation Iterator Types  */
 
 iterator forward(vector * array){
     iterator it;
@@ -101,6 +113,8 @@ iterator init(begin_t initialize, vector * array){
     return (*initialize)(array);
 }
 
+/* Auxiliary Function Set Direction  */
+
 int setDirection(iterator it, int forward)
 {
     if(it.next == next && it.prev == prev)
@@ -110,27 +124,39 @@ int setDirection(iterator it, int forward)
     if(it.next == next)
     {
         if(forward == 0){
-            printf("This iterator should always go forward");
+            printf("This iterator should always go forward \n");
         }
     }
     if(it.next == prev)
     {
         if(forward == 1){
-            printf("This iterator should always go backward");
+            printf("This iterator should always go backward \n");
         }
     }
     
     return 1;
 }
 
+/* Function "Recorre" 
+    @[input] it: type of iterator that you want to use,
+    @[input] array: structure vector with array you want to iterate, 
+    @[input] forward: 0 in case you want to iterate forward or 1 if backward,
+    @[input] printThis: printing function for this type of data,
+  */
+
 void recorre(iterator it, vector array, int forward, print_t printThis){
-    if(setDirection(it, forward)){
+    if(setDirection(it, forward) == 1)
+    {
+        array.current = it.begin(&array);
         for(void * aux = it.begin(&array); it.next(&array) != NULL; aux = it.next(&array))
         {
             array.current = aux;
             (*printThis)(aux);
         }
-    }else{
+    }
+    if(setDirection(it, forward) == 0)
+    {
+        array.current = it.end(&array);
         for(void * aux = it.end(&array); it.prev(&array) != NULL; aux = it.prev(&array))
         {
             array.current = aux;
@@ -141,7 +167,7 @@ void recorre(iterator it, vector array, int forward, print_t printThis){
 }
 
 
-/* printing functions */
+/* Implementation Printing Functions */
 
 void * printInt(void * printed)
 {
@@ -162,29 +188,32 @@ void * printLibro(void * printed)
     printf(" num de páginas: %d \n ", print.paginas);
 }
 
+/* Testing */
+
+
 int main(int argc, const char * argv[])
 {
     vector enteros;
-    enteros.first = (float *) malloc(N*sizeof(float));
+    enteros.first = (int *) malloc(N*sizeof(int));
     enteros.current = enteros.first;
     enteros.count = N;
-    enteros.size = sizeof(float);
+    enteros.size = sizeof(int);
 
-    float * aux = enteros.first;
-    float * last = enteros.first + (N*sizeof(float));
+    int * aux = enteros.first;
+    int * last = enteros.first + (N*sizeof(int));
 
     printf("\n\n--- Ejercicio #1 ENTEROS ---\n\n");
 
     printf("\n---> Asignación \n");
     for (; aux < last; ++aux) {
         *aux = rand() % 100 *1.5;
-        printf(" assigned %f,    \t ", *aux);
+        printf(" assigned %d \n ", *aux);
     }
 
-    printf("\n---> Recorrido \n");
+    printf("\n\n---> Recorrido \n");
 
-    iterator it = init(&reverse, &enteros);
-    recorre(it, enteros, 0, &printFloat);
+    iterator it = init(&forward, &enteros);
+    recorre(it, enteros, 1, &printInt);
     
     vector libros;
     libros.first = (struct Libro *) malloc(N*sizeof(struct Libro));
@@ -195,14 +224,27 @@ int main(int argc, const char * argv[])
     struct Libro * aux_libros = libros.first;
     struct Libro * last_libros = libros.first + (N*sizeof(struct Libro));
 
-    
+
     printf("\n\n--- Ejercicio #2 LIBROS ---\n\n");
     
+    char * names[] = {
+        " 1 Caperucitar roja",
+        " 2 Hanzel y Gretel",
+        "3 La vuelta al mundo en 80 días",
+        "4 Narnia",
+        "5 Los tres cerditos",
+        "6 Harry Potter",
+        "7 Percy Jackson",
+        "8 Superman comic",
+        "9 Marvel universe",
+        "10 La iliada"
+    };
+
     printf("\n---> Asignación \n");
     int count = 0;
      for (; aux_libros < last_libros; ++aux_libros) {
         aux_libros->paginas = rand() % 100;
-        aux_libros->titulo = "titulo "+count;
+        aux_libros->titulo = names[count];
         count++;
 
         printf(" páginas: %d \n", aux_libros->paginas);
@@ -211,8 +253,11 @@ int main(int argc, const char * argv[])
 
     }
 
-    printf("\n---> Recorrido \n");
-    iterator it_libros = init(&reverse, &libros);
+    printf("\n---> Recorrido Forward\n");
+    iterator it_libros = init(&bidirect, &libros);
+    recorre(it_libros, libros, 1, &printLibro);
+
+    printf("\n---> Recorrido Backward\n");
     recorre(it_libros, libros, 0, &printLibro);
 
 
