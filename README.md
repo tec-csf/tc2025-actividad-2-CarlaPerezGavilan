@@ -1,5 +1,4 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=3002582&assignment_repo_type=AssignmentRepo)
-
+# Implementing Iterators with C Programming
 ## Author
 
 Carla Pérez Gavilán Del Castillo, A01023033
@@ -45,7 +44,10 @@ Tenga en cuenta que debe existir una función genérica denominada Recorre que d
 
 ## References
 
-* [a link](https://github.com/vcubells/tc2025/blob/master/Tema_1_Apuntadores/ordenamiento_generico/ordenamiento_generico/main.c)
-* [a link](http://cs.boisestate.edu/~amit/teaching/253/handouts/07-c-generic-coding-handout.pdf)
-* [a link](https://moodlearn.ariel.ac.il/pluginfile.php/1079766/mod_resource/content/0/12_generic_programming_in_C.pdf)
+* ["Ordenamiento Genérico" class github](https://github.com/vcubells/tc2025/blob/master/Tema_1_Apuntadores/ordenamiento_generico/ordenamiento_generico/main.c)
+* [Presentation on Generic programin C](http://cs.boisestate.edu/~amit/teaching/253/handouts/07-c-generic-coding-handout.pdf)
+* [Generic programming in C](https://moodlearn.ariel.ac.il/pluginfile.php/1079766/mod_resource/content/0/12_generic_programming_in_C.pdf)
+* [Std c++ class iterator documentation](https://en.cppreference.com/w/cpp/iterator/iterator)
+* [GeeksforGeeks forward, reverse and biderctional iterators](https://www.geeksforgeeks.org/forward-iterators-in-cpp/)
 
+[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=3002582&assignment_repo_type=AssignmentRepo)
