@@ -1,7 +1,7 @@
 # Implementing Iterators with C Programming
 ## Author
 
-Carla Pérez Gavilán Del Castillo, A01023033
+Carla Pérez Gavilán Del Castillo, A01023033 <br />
 [Carla's Github](https://github.com/CarlaPerezGavilan)
 
 ## Date
